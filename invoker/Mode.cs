@@ -9,7 +9,7 @@ namespace invoker
     public enum Mode : int
     {
         pattern = 1,
-        ulti,
-        cast
+        ulti = 2,
+        cast = 3
     }
 }

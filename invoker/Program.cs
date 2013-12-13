@@ -20,6 +20,8 @@ namespace invoker
             bool noValues = true;
             bool hint = false;
             Console.WriteLine("DOTA 2 - INVOKER TRAINING PROGRAM - LET'S ROX");
+            Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})", "a", "z", "e", "r", "t");
+            Console.WriteLine("");
             Console.WriteLine("--------------------------------------------");
             Console.WriteLine("Modes:");
             Console.WriteLine("1 - pattern only");
@@ -28,9 +30,12 @@ namespace invoker
             Console.Write("Choose a mode and hit ENTER: ");
             string modeStr = Console.ReadLine();
             Mode mode = Mode.pattern;
-            if (!Enum.TryParse<Mode>(modeStr, out mode))
+            if (modeStr == "1" || modeStr == "2" || modeStr == "3")
             {
-                mode = Mode.pattern;
+                if (!Enum.TryParse<Mode>(modeStr, out mode))
+                {
+                    mode = Mode.pattern;
+                }
             }
 
             string lastFailed = "";
@@ -39,8 +44,8 @@ namespace invoker
                 bool ok = true;
                 Console.Clear();
                 Console.WriteLine("DOTA 2 - INVOKER TRAINING PROGRAM - LET'S ROX");
-                Console.WriteLine("              {0} MODE", mode.ToString().ToUpper());
                 Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})", "a", "z", "e", "r", "t");
+                Console.WriteLine("              {0} MODE", mode.ToString().ToUpper());
                 Console.WriteLine("--------------------------------------------");
 
                 long avg = 0;
