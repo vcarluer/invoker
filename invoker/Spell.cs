@@ -12,10 +12,9 @@ namespace invoker
         {
             this.Name = name;
             this.Pattern = pattern;
-            this.ResetValidate();
-            this.PatternCommands = new Command[this.PatternChar.Length];
+            this.PatternCommands = new Command[pattern.Length];
             int i = 0;
-            foreach (char command in this.PatternChar)
+            foreach (char command in this.Pattern.ToCharArray())
             {
                 this.PatternCommands[i] = CommandFactory.GetCommand(command);
                 i++;
@@ -24,7 +23,7 @@ namespace invoker
 
         public string Name { get; private set; }
         private string Pattern { get; set; }
-        private char[] PatternChar { get; set; }
+        private char[] PatternValidate { get; set; }
         private Command[] PatternCommands { get; set; }
 
         public string PatternKeyboard
@@ -43,16 +42,22 @@ namespace invoker
 
         public void ResetValidate()
         {
-            this.PatternChar = this.Pattern.ToCharArray();
+            this.PatternValidate = new char[this.PatternCommands.Length];
+            int i = 0;
+            foreach (Command command in this.PatternCommands)
+            {
+                this.PatternValidate[i] = command.Key;
+                i++;
+            }
         }
         public bool PickChar(char c)
         {
             bool found = false;
             int pos = -1;
             int i = 0;
-            foreach (Command command in this.PatternCommands)
+            foreach (char command in this.PatternValidate)
             {
-                if (command.Key == c)
+                if (command == c)
                 {
                     pos = i;
                     break;
@@ -64,7 +69,7 @@ namespace invoker
             if (pos > -1)
             {
                 found = true;
-                this.PatternChar[pos] = ' ';
+                this.PatternValidate[pos] = ' ';
             }
 
             return found;
