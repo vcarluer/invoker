@@ -37,13 +37,19 @@ namespace invoker
                 Console.WriteLine("");
                 Console.WriteLine("-------@vcarluer---gamersassociate.com-------");
                 Console.WriteLine("");
-                Console.WriteLine("Modes:");
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Keyboard:");
+                Console.WriteLine("q - set qwerty keyboard");
+                Console.WriteLine("a - set azerty keyboard");
                 Console.WriteLine("c - configure keyboard");
-                Console.ResetColor();
+                Console.WriteLine();
+                Console.WriteLine("Modes:");
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("1 - pattern only");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("2 - pattern and ulti ({0})", KeyboardConfiguration.Ultimate);
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("3 - pattern, ulti ({0}) and cast ({1})", KeyboardConfiguration.Ultimate, KeyboardConfiguration.Cast);
+                Console.ResetColor();
                 Console.Write("Choose a mode and hit ENTER: ");
                 string modeStr = Console.ReadLine();
                 if (modeStr.ToUpper().Equals("C"))
@@ -67,7 +73,20 @@ namespace invoker
                     KeyboardConfiguration.SetKeys(q, w, e, r, t);
                     continueGame = false;
                 }
-                else
+
+                if (modeStr.ToUpper().Equals("Q"))
+                {
+                    KeyboardConfiguration.SetQwerty();
+                    continueGame = false;
+                }
+
+                if (modeStr.ToUpper().Equals("A"))
+                {
+                    KeyboardConfiguration.SetAzerty();
+                    continueGame = false;
+                }
+
+                if (continueGame)
                 {
                     if (modeStr == "1" || modeStr == "2" || modeStr == "3")
                     {
