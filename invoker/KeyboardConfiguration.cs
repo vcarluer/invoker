@@ -10,6 +10,21 @@ namespace invoker
     {
         private static IDictionary<Type, char> Keys = new Dictionary<Type, char>();
 
+        public static char Exit
+        {
+            get
+            {
+                return 'i';
+            }
+        }
+
+        public static char Hint
+        {
+            get
+            {
+                return 'h';
+            }
+        }
 
         public static char Quas
         {
@@ -63,22 +78,22 @@ namespace invoker
 
         public static void SetAzerty()
         {
-            Keys.Clear();
-            SetKey(typeof(Quas), 'a');
-            SetKey(typeof(Wex), 'z');
-            SetKey(typeof(Exort), 'e');
-            SetKey(typeof(Ultimate), 'r');
-            SetKey(typeof(Cast), 't');
+            SetKeys('a', 'z', 'e', 'r', 't');
         }
 
         public static void SetQwerty()
         {
+            SetKeys('q', 'w', 'e', 'r', 't');
+        }
+
+        public static void SetKeys(char q, char w, char e, char r, char t)
+        {
             Keys.Clear();
-            SetKey(typeof(Quas), 'q');
-            SetKey(typeof(Wex), 'w');
-            SetKey(typeof(Exort), 'e');
-            SetKey(typeof(Ultimate), 'r');
-            SetKey(typeof(Cast), 't');
+            SetKey(typeof(Quas), q);
+            SetKey(typeof(Wex), w);
+            SetKey(typeof(Exort), e);
+            SetKey(typeof(Ultimate), r);
+            SetKey(typeof(Cast), t);
         }
     }
 }

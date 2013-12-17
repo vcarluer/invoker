@@ -27,7 +27,12 @@ namespace invoker
                 continueGame = true;
                 Console.Clear();
                 Console.WriteLine("DOTA 2 - INVOKER TRAINING PROGRAM - LET'S ROX");
-                Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})", "a", "z", "e", "r", "t");
+                Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})",
+                                    KeyboardConfiguration.Quas,
+                                    KeyboardConfiguration.Wex,
+                                    KeyboardConfiguration.Exort,
+                                    KeyboardConfiguration.Ultimate,
+                                    KeyboardConfiguration.Cast);
                 Console.WriteLine("");
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("Modes:");
@@ -39,9 +44,23 @@ namespace invoker
                 string modeStr = Console.ReadLine();
                 if (modeStr.ToUpper().Equals("C"))
                 {
-/*                    Console.WriteLine("New keyboard configuration:");
+                    Console.WriteLine("New keyboard configuration:");
                     Console.Write("Quas: ");
-                    var Console.ReadKey*/
+                    char q = Console.ReadKey().KeyChar;
+                    Console.Write(Environment.NewLine);
+                    Console.Write("Wex: ");
+                    char w = Console.ReadKey().KeyChar;
+                    Console.Write(Environment.NewLine);
+                    Console.Write("Exort: ");
+                    char e = Console.ReadKey().KeyChar;
+                    Console.Write(Environment.NewLine);
+                    Console.Write("Ultimate: ");
+                    char r = Console.ReadKey().KeyChar;
+                    Console.Write(Environment.NewLine);
+                    Console.Write("Cast: ");
+                    char t = Console.ReadKey().KeyChar;
+                    Console.Write(Environment.NewLine);
+                    KeyboardConfiguration.SetKeys(q, w, e, r, t);
                     continueGame = false;
                 }
                 else
@@ -62,7 +81,12 @@ namespace invoker
                 bool ok = true;
                 Console.Clear();
                 Console.WriteLine("DOTA 2 - INVOKER TRAINING PROGRAM - LET'S ROX");
-                Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})", "a", "z", "e", "r", "t");
+                Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})",
+                                    KeyboardConfiguration.Quas,
+                                    KeyboardConfiguration.Wex,
+                                    KeyboardConfiguration.Exort,
+                                    KeyboardConfiguration.Ultimate,
+                                    KeyboardConfiguration.Cast);
                 Console.WriteLine("              {0} MODE", mode.ToString().ToUpper());
                 Console.WriteLine("--------------------------------------------");
 
@@ -94,11 +118,11 @@ namespace invoker
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.Write(countOK);
                 Console.ResetColor();
-                Console.Write(" / {0}ms] e", avg);
+                Console.Write(" / {0}ms] ex", avg);
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("x");
+                Console.Write("i");
                 Console.ResetColor();
-                Console.Write("it ");
+                Console.Write("t ");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("h");
                 Console.ResetColor();
@@ -138,12 +162,12 @@ namespace invoker
                     while (i < spell.PatternKeyboard.Length)
                     {
                         char c = Console.ReadKey().KeyChar;
-                        if (c == 'x')
+                        if (c == KeyboardConfiguration.Exit)
                         {
                             return;
                         }
 
-                        if (c == 'h')
+                        if (c == KeyboardConfiguration.Hint)
                         {
                             hint = !hint;
                             noValues = true;
@@ -167,12 +191,12 @@ namespace invoker
                     while (c != KeyboardConfiguration.Cast)
                     {
                         c = Console.ReadKey().KeyChar;
-                        if (c == 'x')
+                        if (c == KeyboardConfiguration.Exit)
                         {
                             return;
                         }
 
-                        if (c == 'h')
+                        if (c == KeyboardConfiguration.Hint)
                         {
                             hint = !hint;
                             noValues = true;
@@ -214,15 +238,15 @@ namespace invoker
                 {
                     char c = ' ';
                     string line = "";
-                    while (c != 'r')
+                    while (c != KeyboardConfiguration.Ultimate)
                     {
                         c = Console.ReadKey().KeyChar;
-                        if (c == 'x')
+                        if (c == KeyboardConfiguration.Exit)
                         {
                             return;
                         }
 
-                        if (c == 'h')
+                        if (c == KeyboardConfiguration.Hint)
                         {
                             hint = !hint;
                             noValues = true;
