@@ -34,12 +34,15 @@ namespace invoker
                                     KeyboardConfiguration.Ultimate,
                                     KeyboardConfiguration.Cast);
                 Console.WriteLine("");
-                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("-------@vcarluer---gamersassociate.com-------");
+                Console.WriteLine("");
                 Console.WriteLine("Modes:");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("c - configure keyboard");
+                Console.ResetColor();
                 Console.WriteLine("1 - pattern only");
-                Console.WriteLine("2 - pattern and ulti (r)");
-                Console.WriteLine("3 - pattern, ulti (r) and cast (t)");
+                Console.WriteLine("2 - pattern and ulti ({0})", KeyboardConfiguration.Ultimate);
+                Console.WriteLine("3 - pattern, ulti ({0}) and cast ({1})", KeyboardConfiguration.Ultimate, KeyboardConfiguration.Cast);
                 Console.Write("Choose a mode and hit ENTER: ");
                 string modeStr = Console.ReadLine();
                 if (modeStr.ToUpper().Equals("C"))
@@ -146,6 +149,7 @@ namespace invoker
                 Console.Write(failed);
                 Console.ResetColor();
                 Console.Write(Environment.NewLine);
+                Console.WriteLine("");
 
                 var spell = spells.GetRandom();
                 spell.ResetValidate();
