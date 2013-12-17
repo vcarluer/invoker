@@ -118,7 +118,12 @@ namespace invoker
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.Write(countOK);
                 Console.ResetColor();
-                Console.Write(" / {0}ms] ex", avg);
+                Console.Write(" / {0}ms] [", avg);
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write(countKO);
+                Console.ResetColor();
+                Console.Write("] ex");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("i");
                 Console.ResetColor();
