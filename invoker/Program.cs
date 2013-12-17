@@ -19,22 +19,44 @@ namespace invoker
             Stopwatch watch = new Stopwatch();
             bool noValues = true;
             bool hint = false;
-            Console.WriteLine("DOTA 2 - INVOKER TRAINING PROGRAM - LET'S ROX");
-            Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})", "a", "z", "e", "r", "t");
-            Console.WriteLine("");
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("Modes:");
-            Console.WriteLine("1 - pattern only");
-            Console.WriteLine("2 - pattern and ulti (r)");
-            Console.WriteLine("3 - pattern, ulti (r) and cast (t)");
-            Console.Write("Choose a mode and hit ENTER: ");
-            string modeStr = Console.ReadLine();
+            bool continueGame = false;
             Mode mode = Mode.pattern;
-            if (modeStr == "1" || modeStr == "2" || modeStr == "3")
+            char quas = 'a';
+            char wex = 'z';
+            char exort = 'e';
+            char ulti = 'r';
+            char cast = 't';
+            while (!continueGame)
             {
-                if (!Enum.TryParse<Mode>(modeStr, out mode))
+                continueGame = true;
+                Console.Clear();
+                Console.WriteLine("DOTA 2 - INVOKER TRAINING PROGRAM - LET'S ROX");
+                Console.WriteLine("Quas ({0}) Wex ({1}) Exort ({2}) Ulti ({3}) Cast ({4})", "a", "z", "e", "r", "t");
+                Console.WriteLine("");
+                Console.WriteLine("--------------------------------------------");
+                Console.WriteLine("Modes:");
+                Console.WriteLine("c - configure keyboard");
+                Console.WriteLine("1 - pattern only");
+                Console.WriteLine("2 - pattern and ulti (r)");
+                Console.WriteLine("3 - pattern, ulti (r) and cast (t)");
+                Console.Write("Choose a mode and hit ENTER: ");
+                string modeStr = Console.ReadLine();
+                if (modeStr.ToUpper().Equals("C"))
                 {
-                    mode = Mode.pattern;
+/*                    Console.WriteLine("New keyboard configuration:");
+                    Console.Write("Quas: ");
+                    var Console.ReadKey*/
+                    continueGame = false;
+                }
+                else
+                {
+                    if (modeStr == "1" || modeStr == "2" || modeStr == "3")
+                    {
+                        if (!Enum.TryParse<Mode>(modeStr, out mode))
+                        {
+                            mode = Mode.pattern;
+                        }
+                    }
                 }
             }
 
@@ -105,7 +127,7 @@ namespace invoker
                 Console.Write(spell.Name);
                 if (hint)
                 {
-                    Console.Write(" ({0})", spell.Pattern);
+                    Console.Write(" ({0})", spell.PatternKeyboard);
                 }
 
                 Console.WriteLine("");
@@ -117,7 +139,7 @@ namespace invoker
                 watch.Start();
                 if (mode == Mode.pattern)
                 {
-                    while (i < spell.Pattern.Length)
+                    while (i < spell.PatternKeyboard.Length)
                     {
                         char c = Console.ReadKey().KeyChar;
                         if (c == 'x')
@@ -249,7 +271,7 @@ namespace invoker
                     else
                     {
                         countKO++;
-                        lastFailed = spell.Pattern;
+                        lastFailed = spell.PatternKeyboard;
                     }
                 }
 
