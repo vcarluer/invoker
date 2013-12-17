@@ -65,8 +65,40 @@ namespace invoker
                 {
                     failed = "failed " + lastFailed;
                 }
+                else
+                {
+                    failed = "success";
+                }
 
-                Console.WriteLine("[{0} / {1}ms] [{2}] e(x)it (h)int {3} {4}", countOK, avg, countKO, hintSw, failed);
+                Console.ResetColor();
+                Console.Write("[");
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write(countOK);
+                Console.ResetColor();
+                Console.Write(" / {0}ms] e", avg);
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("x");
+                Console.ResetColor();
+                Console.Write("it ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("h");
+                Console.ResetColor();
+                Console.Write("int {0} ", hintSw);
+                if (lastFailed != "")
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+
+                Console.Write(failed);
+                Console.ResetColor();
+                Console.Write(Environment.NewLine);
 
                 var spell = spells.GetRandom();
                 spell.ResetValidate();
