@@ -26,6 +26,14 @@ namespace invoker
             }
         }
 
+        public static char Tweet
+        {
+            get
+            {
+                return 'u';
+            }
+        }
+
         public static char Quas
         {
             get

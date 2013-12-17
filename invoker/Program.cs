@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace invoker
 {
@@ -114,7 +115,7 @@ namespace invoker
                 {
                     failed = "success";
                 }
-
+                ConsoleColor hintKey = ConsoleColor.Yellow;
                 Console.ResetColor();
                 Console.Write("[");
                 Console.BackgroundColor = ConsoleColor.Green;
@@ -126,12 +127,16 @@ namespace invoker
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.Write(countKO);
                 Console.ResetColor();
-                Console.Write("] ex");
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("] tweet(");
+                Console.ForegroundColor = hintKey;
+                Console.Write("u");
+                Console.ResetColor();
+                Console.Write(") ex");
+                Console.ForegroundColor = hintKey;
                 Console.Write("i");
                 Console.ResetColor();
                 Console.Write("t ");
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = hintKey;
                 Console.Write("h");
                 Console.ResetColor();
                 Console.Write("int {0} ", hintSw);
@@ -171,6 +176,13 @@ namespace invoker
                     while (i < spell.PatternKeyboard.Length)
                     {
                         char c = Console.ReadKey().KeyChar;
+                        if (c == KeyboardConfiguration.Tweet)
+                        {
+                            SendTwitter(mode.ToString().ToUpper(), countOK, avg, countKO);
+                            noValues = true;
+                            break;
+                        }
+
                         if (c == KeyboardConfiguration.Exit)
                         {
                             return;
@@ -200,6 +212,13 @@ namespace invoker
                     while (c != KeyboardConfiguration.Cast)
                     {
                         c = Console.ReadKey().KeyChar;
+                        if (c == KeyboardConfiguration.Tweet)
+                        {
+                            SendTwitter(mode.ToString().ToUpper(), countOK, avg, countKO);
+                            noValues = true;
+                            break;
+                        }
+
                         if (c == KeyboardConfiguration.Exit)
                         {
                             return;
@@ -250,6 +269,13 @@ namespace invoker
                     while (c != KeyboardConfiguration.Ultimate)
                     {
                         c = Console.ReadKey().KeyChar;
+                        if (c == KeyboardConfiguration.Tweet)
+                        {
+                            SendTwitter(mode.ToString().ToUpper(), countOK, avg, countKO);
+                            noValues = true;
+                            break;
+                        }
+
                         if (c == KeyboardConfiguration.Exit)
                         {
                             return;
@@ -305,6 +331,16 @@ namespace invoker
                 }
 
             }
+        }
+
+        private static void SendTwitter(string mode, int casted, long avg, int missed)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(String.Format("Dota 2 invoker training {0} mode\n", mode));
+            sb.Append(String.Format("Casted {0} spells with an average of {1}ms, missed {2}\n", casted, avg, missed));
+            sb.Append("#d2tp Training program: http://bit.ly/31465412");
+            string query = HttpUtility.UrlEncode(sb.ToString());
+            System.Diagnostics.Process.Start("https://twitter.com/intent/tweet?source=invokerdota2&text=" + query);
         }
     }
 }
