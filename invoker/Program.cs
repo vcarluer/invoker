@@ -355,10 +355,11 @@ namespace invoker
 
         private static void SendTwitter(string mode, int casted, long avg, int missed)
         {
+            string dlUrl = "http://bit.ly/1dkjOTu";
             StringBuilder sb = new StringBuilder();
             sb.Append(String.Format("Dota 2 invoker training {0} mode\n", mode));
             sb.Append(String.Format("Casted {0} spells with an average of {1}ms, missed {2}\n", casted, avg, missed));
-            sb.Append("#d2tp Training program: http://bit.ly/31465412");
+            sb.Append(String.Format("#d2tp Training program: {0}", dlUrl));
             string query = HttpUtility.UrlEncode(sb.ToString());
             System.Diagnostics.Process.Start("https://twitter.com/intent/tweet?source=invokerdota2&text=" + query);
         }
