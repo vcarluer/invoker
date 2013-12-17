@@ -34,9 +34,9 @@ namespace invoker
                                     KeyboardConfiguration.Exort,
                                     KeyboardConfiguration.Ultimate,
                                     KeyboardConfiguration.Cast);
-                Console.WriteLine("");
+                Console.WriteLine();
                 Console.WriteLine("-------@vcarluer---gamersassociate.com-------");
-                Console.WriteLine("");
+                Console.WriteLine();
                 Console.WriteLine("Keyboard:");
                 Console.WriteLine("q - set qwerty keyboard");
                 Console.WriteLine("a - set azerty keyboard");
@@ -50,8 +50,9 @@ namespace invoker
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("3 - pattern, ulti ({0}) and cast ({1})", KeyboardConfiguration.Ultimate, KeyboardConfiguration.Cast);
                 Console.ResetColor();
-                Console.Write("Choose a mode and hit ENTER: ");
-                string modeStr = Console.ReadLine();
+                Console.WriteLine();
+                Console.Write("Choose an option: ");
+                string modeStr = Console.ReadKey().KeyChar.ToString();
                 if (modeStr.ToUpper().Equals("C"))
                 {
                     Console.WriteLine("New keyboard configuration:");
@@ -173,7 +174,7 @@ namespace invoker
                 Console.Write(failed);
                 Console.ResetColor();
                 Console.Write(Environment.NewLine);
-                Console.WriteLine("");
+                Console.WriteLine();
 
                 var spell = spells.GetRandom();
                 spell.ResetValidate();
@@ -183,7 +184,7 @@ namespace invoker
                     Console.Write(" ({0})", spell.PatternKeyboard);
                 }
 
-                Console.WriteLine("");
+                Console.WriteLine();
 
                 int i = 0;
 
