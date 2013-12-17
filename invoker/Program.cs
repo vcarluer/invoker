@@ -21,11 +21,7 @@ namespace invoker
             bool hint = false;
             bool continueGame = false;
             Mode mode = Mode.pattern;
-            char quas = 'a';
-            char wex = 'z';
-            char exort = 'e';
-            char ulti = 'r';
-            char cast = 't';
+            KeyboardConfiguration.SetAzerty();
             while (!continueGame)
             {
                 continueGame = true;
@@ -168,7 +164,7 @@ namespace invoker
                     char c = ' ';
                     string line = "";
                     string command = "";
-                    while (c != 't')
+                    while (c != KeyboardConfiguration.Cast)
                     {
                         c = Console.ReadKey().KeyChar;
                         if (c == 'x')
@@ -183,7 +179,7 @@ namespace invoker
                             break;
                         }
 
-                        if (c == 'r')
+                        if (c == KeyboardConfiguration.Ultimate)
                         {
                             if (line.Length >= 3)
                             {
@@ -233,7 +229,7 @@ namespace invoker
                             break;
                         }
 
-                        if (c != 'r')
+                        if (c != KeyboardConfiguration.Ultimate)
                         {
                             line += c;
                         }

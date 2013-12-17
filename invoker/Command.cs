@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 
 namespace invoker
 {
-    public class Command
+    public abstract class Command
     {
-        public Command(string name, char key)
+        public Command(string name, char pattern)
         {
             this.Name = name;
-            this.Key = key;
-            this.Pattern = key;
+            this.Pattern = pattern;
         }
 
         public string Name { get; private set; }
-        public char Key { get; set; }
+        public char Key
+        {
+            get
+            {
+                return KeyboardConfiguration.GetKey(this.GetType());
+            }
+        }
         public char Pattern { get; private set; }
     }
 }

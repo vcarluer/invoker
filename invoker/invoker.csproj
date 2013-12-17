@@ -44,6 +44,7 @@
     <Compile Include="Cast.cs" />
     <Compile Include="CommandFactory.cs" />
     <Compile Include="Exort.cs" />
+    <Compile Include="KeyboardConfiguration.cs" />
     <Compile Include="Mode.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Program.cs" />
